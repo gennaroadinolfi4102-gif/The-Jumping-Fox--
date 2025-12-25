@@ -1,9 +1,12 @@
 name: "Esporta iOS"
-on: [push] # Si avvia ogni volta che carichi modifiche
+on: 
+  workflow_dispatch:
+  push:
+    branches: [ main ]
 
 jobs:
   export-ios:
-    runs-on: macos-latest # Qui GitHub userà un vero Mac virtuale
+    runs-on: macos-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -17,7 +20,7 @@ jobs:
       - name: Esporta Progetto Xcode
         run: |
           mkdir -p build/ios
-          godot --headless --export-release "iOS" build/ios/il_tuo_gioco.xcodeproj
+          godot --headless --export-release "iOS" build/ios/The-Jumping-Fox.xcodeproj
           
       - name: Carica Risultato
         uses: actions/upload-artifact@v4
