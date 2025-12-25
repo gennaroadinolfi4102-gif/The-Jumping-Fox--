@@ -11,7 +11,8 @@ jobs:
       - name: Setup Godot
         uses: chickensoft-games/setup-godot@v2
         with:
-          version: 4.3.0 # Metti la tua versione di Godot (es. 4.2.2)
+          version: 4.3.0
+          use-mono: false
 
       - name: Esporta Progetto Xcode
         run: |
