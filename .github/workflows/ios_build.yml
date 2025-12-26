@@ -1,25 +1,17 @@
-name: Esporta-iOS
+name: build
 on: [workflow_dispatch, push]
-
 jobs:
   build:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Godot-Engine
-        uses: chickensoft-games/setup-godot@v2
+      - uses: chickensoft-games/setup-godot@v2
         with:
-          version: 4.3.0 
-          use-mono: false
-
-      - name: Xcode-Project
-        run: |
+          version: 4.3
+      - run: |
           mkdir -p build/ios
-          godot --headless --path . --export-release "iOS" build/ios/The-Jumping-Fox.xcodeproj
-
-      - name: Upload
-        uses: actions/upload-artifact@v4
+          godot --headless --path . --export-release "iOS" build/ios/game.xcodeproj
+      - uses: actions/upload-artifact@v4
         with:
-          name: Progetto-iOS
+          name: ios-export
           path: build/ios
