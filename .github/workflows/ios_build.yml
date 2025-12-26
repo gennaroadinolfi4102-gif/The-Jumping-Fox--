@@ -10,7 +10,7 @@ jobs:
       - name: Godot-Engine
         uses: chickensoft-games/setup-godot@v2
         with:
-          version: 4.3.0
+          version: 4.3.0 
           use-mono: false
 
       - name: Xcode-Project
