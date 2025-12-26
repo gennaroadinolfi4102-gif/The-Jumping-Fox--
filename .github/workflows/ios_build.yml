@@ -1,29 +1,25 @@
-name: "Esporta iOS"
-on: 
-  workflow_dispatch:
-  push:
-    branches: [ main ]
+name: Esporta-iOS
+on: [workflow_dispatch, push]
 
 jobs:
-  export-ios:
+  build:
     runs-on: macos-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Godot
+      - name: Godot-Engine
         uses: chickensoft-games/setup-godot@v2
         with:
           version: 4.3.0
           use-mono: false
 
-      - name: Esporta Progetto Xcode
+      - name: Xcode-Project
         run: |
           mkdir -p build/ios
           godot --headless --export-release "iOS" build/ios/The-Jumping-Fox.xcodeproj
-          
-      - name: Carica Risultato
+
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: Progetto-Xcode-iOS
+          name: Progetto-iOS
           path: build/ios
